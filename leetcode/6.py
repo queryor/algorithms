@@ -31,6 +31,12 @@ class Solution(object):
         """
         j = -1
         flag = 0
+        ans = []
+        if numRows==1:
+            return s
+        for i in range(numRows):
+            print(i)
+            ans.append([])
         for i in range(len(s)):
             if (flag==0):
                 j += 1
@@ -40,10 +46,11 @@ class Solution(object):
                 j -= 1
                 if j == 0:
                     flag = 0
-            print(j)
-            
-        return numRows
+            #print(j)
+            ans[j].append(s[i])
+        ans = [y for x in ans for y in x]
+        return ''.join(ans)
 
 s  = Solution()
-a = "PAYPALISHIRING"
-print(s.convert(a,3))
+a = "ABCDEF"
+print(s.convert(a,2))
