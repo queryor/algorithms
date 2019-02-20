@@ -35,7 +35,6 @@ class Solution(object):
         if numRows==1:
             return s
         for i in range(numRows):
-            print(i)
             ans.append([])
         for i in range(len(s)):
             if (flag==0):
