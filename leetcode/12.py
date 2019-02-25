@@ -60,7 +60,7 @@ class Solution:
                 res = res + roman[n] + roman[n-1]
             elif x>4 and x<9:
                 res = res + roman[n-1]
-                for i in range(6,x):
+                for i in range(5,x):
                     res+= roman[n]
             elif x==9:
                 res = res+roman[n]+roman[n-2]
