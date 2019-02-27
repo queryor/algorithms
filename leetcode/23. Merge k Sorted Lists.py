@@ -22,7 +22,7 @@ class Solution:
     def mergeKLists(self, lists) -> ListNode:
         if len(lists)==0:
             return None
-        n = len(lists)g
+        n = len(lists)
         while(n>1):
             k = (n+1)//2
             for i in range(n//2):
