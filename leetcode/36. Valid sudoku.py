@@ -6,7 +6,7 @@ class Solution(object):
         :type board: List[List[str]]
         :rtype: bool
         """
-        #创建一个字典来判断是不是重复,查找速度为O(nlogn)  
+        #创建一个字典来判断是不是重复。 
         #更快的方法应该直接用一个数组。因为数字可以直接当索引，查找速度为O(1)
         grid = [{} for i in range(9)]
         for i in range(9):
