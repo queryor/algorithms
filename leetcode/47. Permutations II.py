@@ -14,6 +14,7 @@ class Solution:
     def permuteUnique(self, nums):
         out = []
         temp = []
+        nums.sort()
         def helper(nums, temp, out):
             
             if not nums:
