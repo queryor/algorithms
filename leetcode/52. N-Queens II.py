@@ -1,9 +1,8 @@
-#https://leetcode.com/problems/n-queens/
 class Solution:
-    def solveNQueens(self, n: int):
+    def totalNQueens(self, n: int) -> int:
         res = []
         self.dfs([-1]*n, 0, [], res)
-        return res
+        return len(res)
 
     # nums is a one-dimension array, like [1, 3, 0, 2] means
     # first queen is placed in column 1, second queen is placed
