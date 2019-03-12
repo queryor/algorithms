@@ -63,33 +63,33 @@ class Solution:
         ## 先要判断第一行第一列有没有0
         row_zero=False
         col_zero=False
-        r_num = len(matrix)
-        c_num = len(matrix[0])
-        if r_num==0 or c_num == 0:
+        # len(matrix) = len(matrix)
+        # len(matrix[0]) = len(matrix[0])
+        if len(matrix)==0 or len(matrix[0]) == 0:
             return -1
         # 检测第一行
-        for i in range(c_num):
+        for i in range(len(matrix[0])):
             if matrix[0][i]==0:
                 row_zero=True
         # 检测第一列
-        for i in range(r_num):
+        for i in range(len(matrix)):
             if matrix[i][0]==0:
                 col_zero=True
         # 遍历数组 设置flag
-        for i in range(1,r_num):
-            for j in range(1,c_num):
+        for i in range(1,len(matrix)):
+            for j in range(1,len(matrix[0])):
                 if matrix[i][j]==0:
                     matrix[0][j]=0
                     matrix[i][0]=0
         # 遍历数组 根据 flag 修改值
-        for i in range(1,r_num):
-            for j in range(1,c_num):
+        for i in range(1,len(matrix)):
+            for j in range(1,len(matrix[0])):
                 if matrix[0][j]==0 or matrix[i][0]==0:
                     matrix[i][j]=0
         # 修改第一行 和 第一列
         if row_zero:
-            for i in range(c_num):
+            for i in range(len(matrix[0])):
                 matrix[0][i]=0
         if col_zero:
-            for i in range(r_num):
+            for i in range(len(matrix)):
                 matrix[i][0]=0
