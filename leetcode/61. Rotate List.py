@@ -25,6 +25,8 @@ class ListNode:
 
 class Solution:
     def rotateRight(self, head: ListNode, k: int) -> ListNode:
+    # Runtime: 48 ms, faster than 57.77% of Python3 online submissions for Rotate List.
+    # Memory Usage: 13.1 MB, less than 5.77% of Python3 online submissions for Rotate List.
         p = head
         if p == None:
             return None
@@ -34,6 +36,11 @@ class Solution:
             l+=1
             s.append(p)
             p = p.next
-        k = (k-1)%2
-        print(k)
-
+        k = (k-1)%l
+        i = l - k -1
+        ans = s[i]
+        s[-1].next = s[0]
+        s[(i-1)%l].next = None
+        return ans
+    
+    
