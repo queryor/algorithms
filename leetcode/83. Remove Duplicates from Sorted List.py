@@ -27,7 +27,7 @@ class Solution:
                 cur=cur.next
             pre.next = cur
             pre = pre.next
-            if cur==None:
+            if cur == None:
                 break
             cur = cur.next
         return head
