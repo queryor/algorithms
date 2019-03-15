@@ -37,3 +37,10 @@ class Solution:
             for j in range(size-1,-1,-1):
                 ans.append(ans[j] | 1<<i)
         return ans
+
+    def grayCode1(self, n: int):
+        #格雷码转换 http://www.cnblogs.com/grandyang/p/4315607.html
+        ans = []
+        for i in range(2**n):
+            ans.append(i>>1^i)
+        return ans
