@@ -69,3 +69,4 @@ class Solution:
                 q1.put(node1.right)
                 q2.put(node2.right)
                 q2.put(node2.left)
+        return True
