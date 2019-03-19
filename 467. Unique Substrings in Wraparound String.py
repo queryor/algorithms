@@ -21,4 +21,22 @@
 class Solution:
     def findSubstringInWraproundString(self, p: str) -> int:
         #   只要是遇到字符串的子序列或是匹配问题直接就上动态规划Dynamic Programming，其他的都不要考虑!!!!
-        pass
+        ## dp[i] 表示以字符串p[i]结尾的最长顺序字符串的长度
+        n = len(p)
+        if n<=1:
+            return n
+        dp = [0 for i in range(n+1)]
+        dp[0]=0
+        cnt = [0 for i in range(26)]
+        for i in range(1,n+1):
+            if i>1 and (ord(p[i-1])==ord(p[i-2])+1 or ord(p[i-2])-ord(p[i-1])==25):
+                dp[i]=dp[i-1]+1
+            else:
+                dp[i]=1
+            cnt[ord(p[i-1])-ord('a')] = max(cnt[ord(p[i-1])-ord('a')],dp[i]) 
+        # print(dp)
+        # print(cnt)
+        return sum(cnt)
+s = Solution()
+i = "zab"
+print(s.findSubstringInWraproundString(i))
