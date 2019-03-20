@@ -35,10 +35,4 @@ class Solution:
             return self.getminDepth(root.right)+1
         elif root.right==None:
             return self.getminDepth(root.left)+1
-        left = root.left
-        if left.left==None and left.right==None:
-            return 2
-        right = root.right
-        if right.left==None and right.right==None:
-            return 2
         return 1+min(self.getminDepth(root.left),self.getminDepth(root.right))
