@@ -24,5 +24,13 @@ class TreeNode:
 
 class Solution:
     def buildTree(self, preorder, inorder) -> TreeNode:
-        pass
+        if preorder==[] or inorder==[]:
+            return None
+        for i in range(len(inorder)):
+            if inorder[i]==preorder[0]:
+                break
+        cur = TreeNode(preorder[0])
+        cur.left = self.buildTree(preorder[1:1+i],inorder[:i])
+        cur.right = self.buildTree(preorder[1+i:],inorder[i+1:])
+        return cur
         
