@@ -1,6 +1,6 @@
 # https://leetcode.com/problems/pascals-triangle/
 class Solution:
-    def generate(self, numRows: int) -> List[List[int]]:
+    def generate(self, numRows: int):
         if numRows == 0:
             return []
         res = []
