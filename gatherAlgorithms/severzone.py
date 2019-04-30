@@ -39,16 +39,12 @@ def isRayIntersectsSegment(poi,s_poi,e_poi): #[x,y] [lng,lat]
     if s_poi[1]>poi[1] and e_poi[1]>poi[1]: #线段在射线上边
         return False
     if s_poi[1]<poi[1] and e_poi[1]<poi[1]: #线段在射线下边
-        print(1)
         return False
     if s_poi[1]==poi[1] and e_poi[1]>poi[1]: #交点为下端点，对应spoint
-        print(2)
         return False
     if e_poi[1]==poi[1] and s_poi[1]>poi[1]: #交点为下端点，对应epoint
-        print(3)
         return False
     if s_poi[0]<poi[0] and e_poi[0]<poi[0]: #线段在射线左边
-        print(4)
         return False
 
     xseg=e_poi[0]-(e_poi[0]-s_poi[0])*(e_poi[1]-poi[1])/(e_poi[1]-s_poi[1]) #求交
@@ -71,7 +67,7 @@ def isPoiWithinPoly(poi,poly):
     return True if sinsc%2==1 else  False
 
 if __name__ == "__main__":
-    V = [point(3,3),point(5,4),point(6,5),point(5,6),point(4,1),point(5,1),point(3,4),point(4,5),point(3,5),point(2,4),point(2,1),point(1,1),point(2,0)]
+    V = [point(3,3),point(5,4),point(6,5),point(5,6),point(4,1),point(5,1),point(3,4),point(4,5),point(3,5),point(2,4),point(2,1),point(1,1),point(3,2)]
     pNum = len(V)
     E = [[0 for i in range(pNum)] for i in range(pNum)]
     E = np.array(E)
@@ -113,6 +109,18 @@ if __name__ == "__main__":
     x = [V[i].x for i in ans]
     y = [V[i].y for i in ans]
     axes.plot(x,y,color='y')
-    plt.show()
+    
     poly = [[V[i].x,V[i].y] for i in ans]
-    print(isPoiWithinPoly([3,1],poly))
+    outpointid = []
+    for i in range(pNum):
+        if i not in ans and not isPoiWithinPoly([V[i].x,V[i].y],poly):
+              outpointid.append(i)
+    print(outpointid)
+    for i in outpointid:
+        distances = np.array([dis(V[i],V[j]) for j in ans])
+        index = distances.argsort()[:2]
+        first = max(index)
+        second = min(index)
+        print(ans[first],ans[second])
+        
+    plt.show()
