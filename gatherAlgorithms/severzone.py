@@ -65,7 +65,20 @@ def isPoiWithinPoly(poi,poly):
             sinsc+=1 #有交点就加1
 
     return True if sinsc%2==1 else  False
-
+def dis_line(p1,pa,pb):
+    x,y = p1.x,p1.y
+    x1,y1,x2,y2 = pa.x,pa.y,pb.x,pb.y
+    cross = (x2-x1)*(x-x1)+(y2-y1)*(y-y1)
+    if cross<=0:
+        return math.sqrt((x-x1)**2+(y-y1)**2)
+    d2 = (x2-x1)**2 +(y2-y1)**2
+    if cross>=d2:
+        return math.sqrt((x-x2)**2+(y-y2)**2)
+    r = cross/d2
+    px = x1+(x2-x1)*r
+    py = y1+(y2-y1)*r
+    return math.sqrt((x-px)**2+(py-y)**2)
+    
 if __name__ == "__main__":
     V = [point(3,3),point(5,4),point(6,5),point(5,6),point(4,1),point(5,1),point(3,4),point(4,5),point(3,5),point(2,4),point(2,1),point(1,1),point(3,2)]
     pNum = len(V)
@@ -114,13 +127,15 @@ if __name__ == "__main__":
     outpointid = []
     for i in range(pNum):
         if i not in ans and not isPoiWithinPoly([V[i].x,V[i].y],poly):
-              outpointid.append(i)
-    print(outpointid)
-    for i in outpointid:
-        distances = np.array([dis(V[i],V[j]) for j in ans])
-        index = distances.argsort()[:2]
-        first = max(index)
-        second = min(index)
-        print(ans[first],ans[second])
-        
+                outpointid.append(i)
+                distances = np.array([dis_line(V[i],V[ans[j]],V[ans[j+1]]) for j in range(len(ans)-1)])
+                index = distances.argsort()[0]
+                print(ans)
+                ans.insert(index+1,i)
+                print(ans)
+                print(index)
+    print(outpointid)  
+    x = [V[i].x for i in ans]
+    y = [V[i].y for i in ans]
+    axes.plot(x,y,color='g')
     plt.show()
