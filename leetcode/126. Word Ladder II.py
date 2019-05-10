@@ -63,9 +63,53 @@ class Solution:
                     if len(res)<=self.min:
                         self.dfs(word,endWord,wordList[:j]+wordList[j+1:],ans,res)
                     res.pop()
+    def findLadders1(self, beginWord: str, endWord: str, wordList):
+        ##BFS
+        res = []
+        path = []
+        word = set([])
+        if endWord not in wordList:
+            return res
+        queue_path = []
+        wordSet = set(wordList)
+        path.append(beginWord)
+        queue_path.append(path)
+        level = 1
+        minlevel = len(wordList)+1
+        while(len(queue_path)!=0):
+            t = queue_path.pop(0)
+            if len(t)>level:
+                for w in word:
+                    wordSet.remove(w)
+                word.clear()
+                level = len(t)
+                if level>minlevel:
+                    break
+            last = t[-1]
+            for i in range(len(last)):
+                for ch in range(ord('a'),ord('z')+1):
+                    newlast = last[:i]+chr(ch)+last[i+1:]
+                    if newlast not in wordSet:
+                        continue
+                    # print(newlast)
+                    word.add(newlast)
+                    nextpath = t.copy()
+                    nextpath.append(newlast)
+                    print(newlast==endWord)
+                    if newlast==endWord:
+                        res.append(nextpath)
+                        minlevel = level
+                    else:
+                        queue_path.append(nextpath)
+        return res
 
+                
 s = Solution()
 begin = "hit"
 end = "cog"
-wordList = ["hot","dot","dog","lot","log"]
-print(s.findLadders(begin,end,wordList))
+wordList = ["hot","dot","dog","lot","log","cog"]
+
+begin = "hot"
+end = "dog"
+wordList = ["hot","dog"]
+print(s.findLadders1(begin,end,wordList))
