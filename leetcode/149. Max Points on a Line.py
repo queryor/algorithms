@@ -80,7 +80,7 @@ class Solution:
                     dic[p] += 1
                 else:
                     dic[p] = 1
-            print(dic)
+            #print(dic)
             ans = max(ans, same)
             for j in dic:
                 ans = max(ans, dic[j] + same)
