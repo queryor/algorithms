@@ -26,14 +26,15 @@ Same with other integers chosen by the first player, the second player will alwa
 '''
 class Solution:
     def canIWin(self, maxChoosableInteger: int, desiredTotal: int) -> bool:
+        ## 自顶向下 dp(用字典存中间结果)
         # Runtime: 2520 ms, faster than 5.20% of Python3 online submissions for Can I Win.
         # Memory Usage: 17.6 MB, less than 96.43% of Python3 online submissions for Can I Win.
         candidate = [i for i in range(1,maxChoosableInteger+1)]
         flag = [1 for i in range(maxChoosableInteger)]
         dp = {}
         dp["".join([str(0) for i in range(maxChoosableInteger)])]=False
-        return self.fun1(candidate,flag,desiredTotal,dp)
-    
+        ans =  self.fun1(candidate,flag,desiredTotal,dp)
+        return ans
     def fun1(self,candidate,flag,target,dp)->bool:
         key  = "".join([str(i) for i in flag])
         #print(key)
@@ -64,7 +65,7 @@ class Solution:
                 flag[j] = 1
         dp[key]=False
         return False
-
+    ## 递归
     def canIWin1(self, maxChoosableInteger: int, desiredTotal: int) -> bool:
         candidate = [i for i in range(1,maxChoosableInteger+1)]
         return self.fun2(candidate,desiredTotal)
