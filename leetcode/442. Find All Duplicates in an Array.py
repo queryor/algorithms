@@ -19,12 +19,12 @@ Output:
 class Solution:
     def findDuplicates(self, nums):
         n = len(nums)
-        print(n)
+        #print(n)
         nums = [i-1 for i in nums]
         for i in range(n):
             nums[nums[i]%n]+=n
         res = []
-        print(nums)
+        #print(nums)
         for i in range(n):
             if nums[i]>=2*n:
                 res.append(i+1)
