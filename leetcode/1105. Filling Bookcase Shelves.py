@@ -27,10 +27,23 @@ https://leetcode-cn.com/contest/weekly-contest-143/problems/filling-bookcase-she
 '''
 class Solution:
     def minHeightShelves(self, books, shelf_width: int) -> int:
-        books.sort(key=lambda x:x[1])
+        # dp 问题
+        # 转移方程
+        # j<i
+        #dp[i]=min(dp[j]+h)
+        # 其中j表示books[j+1:i+1]这几本书可以放到一排，h则表示这些书的最大高度。
         n = len(books)
-        ans = 0
-        
+        dp = [float('inf') for i in range(n+1)]
+        dp[0] = 0
+        for i in range(1,n+1):
+            w,h = 0,0
+            for j in range(i-1,-1,-1):
+                w+=books[j][0]
+                h = max(h,books[j][1])
+                if w>shelf_width:
+                    break
+                dp[i] = min(dp[i],dp[j]+h)
+        return dp[n]
             
 
 
