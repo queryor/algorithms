@@ -68,3 +68,32 @@ if __name__ == "__main__":
         ans.append(E["{}_{}".format(a,b)])
     print(len(ans))
     print(" ".join([str(i) for i in ans]))
+
+
+if __name__ == "__main__":
+    # 读取第一行的n
+    n,m = [int(i) for i in sys.stdin.readline().strip().split()]
+    flag = sys.stdin.readline().strip()
+    E = {}
+    ans = []
+    edge = [[9999 for i in range(n)]for i in range(n)]
+    for i in range(n):
+        edge[i][i]=0
+    for i in range(m):
+        a,b = [int(i) for i in sys.stdin.readline().strip().split()]
+        E["{}_{}".format(a-1,b-1)]=i+1
+        E["{}_{}".format(b-1,a-1)]=i+1
+        if flag[a-1]!=flag[b-1]:##删选掉不合规的
+            edge[a-1][b-1]=1
+            edge[b-1][a-1]=1
+    
+    
+    graph = Graph(edge)
+
+    result = graph.prim()
+    ans = []
+    for i in range(len(result)):
+        a,b,w = result[i]
+        ans.append(E["{}_{}".format(a,b)])
+    print(len(ans))
+    print(" ".join([str(i) for i in ans]))
