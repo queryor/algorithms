@@ -1,4 +1,5 @@
-## 参考https://www.cnblogs.com/TenosDoIt/p/3453089.html
+## 参考https://www.cnblogs.com/TenosDoIt/p/3453089.html 
+### 附  线段树解决染色问题(https://www.jvruo.com/archives/429/)
 ### 线段树python 实现 区间最小值问题为例
 import math 
 import sys
